@@ -19,9 +19,9 @@ function! prove#run_cmd(arg)
 
   let root_dir  = s:get_root_dir(test_path)
   let lib_dirs  = s:get_lib_dirs(root_dir)
-  let command   = s:get_command(test_path, root_dir, lib_dirs)
+  let command   = s:get_command('t', root_dir, lib_dirs)
   call s:open_window('[prove] prove', 'prove', command, 'rightbelow')
-endfunction 
+endfunction
 
 function! s:gsub(str, pat, rep)
   return substitute(a:str, '\v'.a:pat, a:rep, 'g')
@@ -90,7 +90,7 @@ function! s:get_lib_dirs(root_dir)
   \''')
 
   let lib_dirs += split(perl5lib, ':')
-  
+
   return lib_dirs
 endfunction
 

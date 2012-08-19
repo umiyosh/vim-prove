@@ -82,15 +82,6 @@ function! s:get_lib_dirs(root_dir)
     return lib_dirs
   endif
 
-  let perl5lib = system('perl -e ''
-  \   eval { require local::lib };
-  \   exit if $@;
-  \   %env=local::lib->build_environment_vars_for("'.locallib_dir.'", 1);
-  \   print $env{PERL5LIB}
-  \''')
-
-  let lib_dirs += split(perl5lib, ':')
-
   return lib_dirs
 endfunction
 
